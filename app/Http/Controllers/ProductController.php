@@ -7,37 +7,52 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $products = Product::paginate(10);
         return view("products.index", ['products' => $products]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view("products.create");
     }
 
-    public function store (Request $request){
+    public function view($id)
+    {
+        $product = Product::find($id);
+        return view('products.view', ['product' => $product]);
+    }
+
+    public function store(Request $request)
+    {
+        \Log::debug($request);
         $data = $this->validateProduct($request);
         $newProduct = Product::create($data);
         return redirect(route('products.index'))->with('success', __('products.message_create_success'));
     }
 
-    public function edit(Product $product){
+    public function edit(Product $product)
+    {
         return view('products.edit', ['product' => $product]);
     }
 
-    public function update(Product $product, Request $request){
+    public function update(Product $product, Request $request)
+    {
         $data = $this->validateProduct($request);
+        $product->update($data);
         return redirect(route('products.index'))->with('success', __('products.message_update_success'));
     }
 
-    public function destroy(Product $product){
+    public function destroy(Product $product)
+    {
         $product->delete();
         return redirect(route('products.index'))->with('success', __('products.message_destroy_success'));
     }
 
 
-    private function validateProduct($req){
+    private function validateProduct($req)
+    {
         return $req->validate([
             'name' => 'required',
             'qty' => 'required|numeric',

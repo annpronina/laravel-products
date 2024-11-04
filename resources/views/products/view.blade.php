@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            {{ $product->name }}
+            Nosaukums: {{ $product->name }}
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Daudzums: {{ $product->qty }}</li>

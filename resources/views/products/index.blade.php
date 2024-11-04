@@ -37,7 +37,7 @@
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->description }}</td>
                             <td>
-                                <a href="{{ route('products.show', ['product' => $product]) }}">Skatīt</a>
+                                <a href="{{ route('products.view', ['product' => $product]) }}">Skatīt</a>
                             </td>
                             <td>
                                 <a href="{{ route('products.edit', ['product' => $product]) }}">Rediģēt</a>

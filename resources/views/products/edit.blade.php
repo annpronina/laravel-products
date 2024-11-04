@@ -12,8 +12,10 @@
         @endif
     </div>
     <form method="post" action="{{ route('products.update', ['product' => $product]) }}">
+        
         @csrf
-        @method('put')
+        @method('PUT')
+
         <div class="mb-3">
             <label for="nameInput" class="form-label">Nosaukums</label>
             <input type="text" class="form-control" id="nameInput" name="name" value="{{ $product->name }}">
